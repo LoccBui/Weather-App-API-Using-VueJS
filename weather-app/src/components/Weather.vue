@@ -109,7 +109,7 @@ export default {
             }
             else {
                 try {
-                    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.inputText}&appid=${this.key}`)
+                    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.inputText}&appid=${process.env.VUE_APP_KEY_WEATHER}`)
                     .then(response => {
                         this.dataAPI = response.data;
                         // this.$emit("get-API", this.dataAPI)
@@ -122,14 +122,14 @@ export default {
                 }
                 catch (error) {
                    if (error.response) {
-                        console.log(err.response.data);
-                        console.log(err.response.status);
-                        console.log(err.response.headers);
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
                     } else if (error.request) {
-                        console.log(err.request);
+                        console.log(error.request);
                     }
                     else {
-                        console.log('Error', err.message);
+                        console.log('Error', error.message);
                     }
                 }             
             }     
